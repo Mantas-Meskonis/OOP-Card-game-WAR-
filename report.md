@@ -190,7 +190,6 @@ class TestCard(unittest.TestCase):
 - Galima ją vizualizuoti
 - Galima implementuoti pinigų ir lažybų sistemą.
 - Galima padaryti permaišymo mechaniką.
-  
 
 
 
