@@ -171,15 +171,15 @@ class TestCard(unittest.TestCase):
 ```
 ## Rezultatai ir santrauka
 
-### > - Kortų žaidimas „Karas“ buvo sėkmingai įgyvendintas naudojant objektinius principus, tokius kaip kompozicija, todėl kodas tapo lengvai valdomas.
+- Kortų žaidimas „Karas“ buvo sėkmingai įgyvendintas naudojant objektinius principus, tokius kaip kompozicija, todėl kodas tapo lengvai valdomas.
 
-### > - Programa teisingai tvarko žaidimą tarp dviejų žmonių žaidėjų arba žmogaus ir kompiuterio, turi kortų traukimo, nugalėtojų nustatymo ir rezultatų saugojimo funkcijas.
+- Programa teisingai tvarko žaidimą tarp dviejų žmonių žaidėjų arba žmogaus ir kompiuterio, turi kortų traukimo, nugalėtojų nustatymo ir rezultatų saugojimo funkcijas.
 
-### > - Unit testai patvirtino kortų palyginimo logiką ir nugalėtojo nustatymą, padėdami patvirtinti pagrindinę žaidimo mechaniką.
+- Unit testai patvirtino kortų palyginimo logiką ir nugalėtojo nustatymą, padėdami patvirtinti pagrindinę žaidimo mechaniką.
 
-### > -  Iššūkių buvo, veinas iš jų tai žaidimo galimybę spresti kraštutinius atvejus kaip kortų pritrūkimas karo metu, vienodų kortų ištraukimo karo mechanikos padarymas.
+- Iššūkių buvo, veinas iš jų tai žaidimo galimybę spresti kraštutinius atvejus kaip kortų pritrūkimas karo metu, vienodų kortų ištraukimo karo mechanikos padarymas.
 
-### > -  Pagrindinė dilema kurią turejau atlikdamas šią programą, tai kortų permaišymo mechanika. "Karas" gali būti žaidžiamas ir ne pagal taškus kaip aš padariau, tačiau pagal visas kaladės kortas. Tai reiškia, kad pasibaigus kaladėje kortoms, jau atverstos kortos būtų permaišytos ir karas žaidžiamas toliau, iki kol vienas iš žaidėjų susirinks visą kaladę. Šis žaidimo metodas užtranka tikrai ilgą laiko tarpą, ir paprasta programos demonstracija bei testavimas tikrai užtruktų ilgai ir pasidarytu greitai nuobodu. Iš pradžių nebuvau tvirtas apie pasirinkimą daryti ši žaidima tokiu metodu, tačiau pasiklausęs pažystamų, interneto ir šiaip toliau pasigilinęs į "Karo" istoriją, sužinojau, kad tokį "Karo" variantą irgi žaisdavo.
+- Pagrindinė dilema kurią turejau atlikdamas šią programą, tai kortų permaišymo mechanika. "Karas" gali būti žaidžiamas ir ne pagal taškus kaip aš padariau, tačiau pagal visas kaladės kortas. Tai reiškia, kad pasibaigus kaladėje kortoms, jau atverstos kortos būtų permaišytos ir karas žaidžiamas toliau, iki kol vienas iš žaidėjų susirinks visą kaladę. Šis žaidimo metodas užtranka tikrai ilgą laiko tarpą, ir paprasta programos demonstracija bei testavimas tikrai užtruktų ilgai ir pasidarytu greitai nuobodu. Iš pradžių nebuvau tvirtas apie pasirinkimą daryti ši žaidima tokiu metodu, tačiau pasiklausęs pažystamų, interneto ir šiaip toliau pasigilinęs į "Karo" istoriją, sužinojau, kad tokį "Karo" variantą irgi žaisdavo.
 
 
 
