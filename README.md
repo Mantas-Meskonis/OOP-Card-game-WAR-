@@ -143,9 +143,9 @@ class CardFactory:
             self.logger("WAR again!")
             self.war(table_cards)
 ```
-– **Žaidėjo sąveika:** Palaiko žmonių tarpusavio arba žmonių ir kompiuterio žaidimus su dinamine įvestimi.
-– **Pastovumas:** Žaidimo rezultatai registruojami byloje, kad būtų galima juos saugoti.
-– **Unit test:** „unittest“ modulis apžvelgia pagrindinę logiką: kortų palyginimą, kaladės dydį ir nugalėtojo nustatymą.
+- **Žaidėjo sąveika:** Palaiko žmonių tarpusavio arba žmonių ir kompiuterio žaidimus su dinamine įvestimi.
+- **Pastovumas:** Žaidimo rezultatai registruojami byloje, kad būtų galima juos saugoti.
+- **Unit test:** „unittest“ modulis apžvelgia pagrindinę logiką: kortų palyginimą, kaladės dydį ir nugalėtojo nustatymą.
 
 ```py
 lass TestCard(unittest.TestCase):
