@@ -146,6 +146,7 @@ class CardFactory:
 – **Žaidėjo sąveika:** Palaiko žmonių tarpusavio arba žmonių ir kompiuterio žaidimus su dinamine įvestimi.
 – **Pastovumas:** Žaidimo rezultatai registruojami byloje, kad būtų galima juos saugoti.
 – **Unit test:** „unittest“ modulis apžvelgia pagrindinę logiką: kortų palyginimą, kaladės dydį ir nugalėtojo nustatymą.
+
 ```py
 lass TestCard(unittest.TestCase):
     def test_card_comparison(self):
