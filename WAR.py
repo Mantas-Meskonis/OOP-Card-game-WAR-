@@ -1,6 +1,7 @@
 from random import shuffle
 import sys
 import unittest
+from datetime import datetime
 
 class CardFactory:
     suits = ["spades", "hearts", "diamonds", "clubs"]
@@ -24,6 +25,9 @@ class Card:
     def __gt__(self, other):
         return self.value > other.value
 
+    def __eq__(self, other):
+        return self.value == other.value
+
     def __repr__(self):
         return f"{self.values[self.value]} of {self.suits[self.suit]}"
 
@@ -37,9 +41,9 @@ class Deck:
 
 class Player:
     def __init__(self, name):
-        self.name = name
         self.wins = 0
         self.card = None
+        self.name = name
 
     def __str__(self):
         return self.name
@@ -49,12 +53,36 @@ class ComputerPlayer(Player):
         super().__init__("Computer")
 
 class Game:
-    def __init__(self, player1_name, player2_name=None, use_computer=False, results_file="game_results.txt", logger=print):
+    def __init__(self, name1=None, name2=None, use_computer=None, logger=print):
+        self.results_file = "game_results.txt"
         self.logger = logger
+        self.read_previous_results()
+
+        if name1 is None:
+            name1 = input("Player 1 name: ")
+        if use_computer is None:
+            use_computer = input("Play against computer? (y/n): ").lower() == 'y'
+
         self.deck = Deck()
-        self.p1 = Player(player1_name)
-        self.p2 = ComputerPlayer() if use_computer else Player(player2_name or "Player 2")
-        self.results_file = results_file
+        self.p1 = Player(name1)
+        if use_computer:
+            self.p2 = ComputerPlayer()
+        else:
+            name2 = name2 or input("Player 2 name: ")
+            self.p2 = Player(name2)
+
+    def read_previous_results(self):
+        try:
+            with open(self.results_file, 'r') as file:
+                results = file.readlines()
+                if results:
+                    print("\nPrevious Game Results:")
+                    for line in results[-3:]: 
+                        print(line.strip())
+                else:
+                    print("\nNo previous results found.")
+        except FileNotFoundError:
+            print("\nNo previous results found.")
 
     def wins(self, winner_name):
         self.logger(f"{winner_name} wins this round!")
@@ -65,39 +93,47 @@ class Game:
     def show_score(self):
         self.logger(f"Score → {self.p1.name}: {self.p1.wins} | {self.p2.name}: {self.p2.wins}\n")
 
-    def play_round(self):
-        p1_card = self.deck.remove_card()
-        p2_card = self.deck.remove_card()
-        if not p1_card or not p2_card:
-            return False
+    def play_game(self):
+        print("\nBeginning War!\n")
+        while len(self.deck.cards) >= 2:
+            response = input("Press 'q' to quit. Any other key to play: ")
+            if response.lower() == 'q':
+                break
 
-        self.p1.card = p1_card
-        self.p2.card = p2_card
-        self.draw(self.p1.name, p1_card, self.p2.name, p2_card)
+            table_cards = []
+            p1_card = self.deck.remove_card()
+            p2_card = self.deck.remove_card()
+            self.p1.card = p1_card
+            self.p2.card = p2_card
+            table_cards.extend([p1_card, p2_card])
+            self.draw(self.p1.name, p1_card, self.p2.name, p2_card)
 
-        if p1_card > p2_card:
-            self.p1.wins += 1
-            self.wins(self.p1.name)
-        elif p2_card > p1_card:
-            self.p2.wins += 1
-            self.wins(self.p2.name)
-        else:
-            self.logger("WAR!")
-            self.war([p1_card, p2_card])
+            if p1_card > p2_card:
+                self.p1.wins += 1
+                self.wins(self.p1.name)
+            elif p2_card > p1_card:
+                self.p2.wins += 1
+                self.wins(self.p2.name)
+            else:
+                self.logger("WAR!")
+                self.war(table_cards)
 
-        self.show_score()
-        return True
+            self.show_score()
+
+        winner = self.determine_winner()
+        self.save_result(winner)
+        print(f"War is over. {winner if winner != 'It was a tie!' else winner}")
 
     def war(self, table_cards):
         if len(self.deck.cards) < 8:
-            self.logger("Not enough cards to continue war. Awarding based on current score.")
+            self.logger("Not enough cards to continue war. Ending war.")
             return
 
-        self.logger("Each player places three cards face down and one face up...")
+        self.logger("Each player places three cards face down and one face up.")
 
         for _ in range(3):
-            table_cards.append(self.deck.remove_card())
-            table_cards.append(self.deck.remove_card())  
+            table_cards.append(self.deck.remove_card()) 
+            table_cards.append(self.deck.remove_card()) 
 
         p1_war_card = self.deck.remove_card()
         p2_war_card = self.deck.remove_card()
@@ -119,39 +155,27 @@ class Game:
             return self.p1.name
         elif self.p2.wins > self.p1.wins:
             return self.p2.name
-        return "It was a tie!"
+        else:
+            return "It was a tie!"
 
     def save_result(self, winner):
         with open(self.results_file, 'a') as file:
-            file.write(f"Winner: {winner}\n")
+            file.write(f"{datetime.now().strftime('%Y-%m-%d %H:%M:%S')} - Winner: {winner}\n")
 
-    def play_game(self):
-        self.logger("Beginning War!")
-        while len(self.deck.cards) >= 2:
-            response = input("Press 'q' to quit. Any other key to play: ")
-            if response.lower() == 'q':
-                break
-            if not self.play_round():
-                break
-
-        winner = self.determine_winner()
-        self.save_result(winner)
-        self.logger(f"War is over. {winner} won!")
-
-class TestCardGame(unittest.TestCase):
+class TestCard(unittest.TestCase):
     def test_card_comparison(self):
-        c1 = Card(10, 2)  
+        c1 = Card(10, 2) 
         c2 = Card(11, 1) 
         self.assertTrue(c2 > c1)
         self.assertFalse(c1 > c2)
-        self.assertFalse(c1 > c1)
+        self.assertTrue(c1 == Card(10, 0)) 
 
     def test_deck_size(self):
         deck = Deck()
         self.assertEqual(len(deck.cards), 52)
 
     def test_winner_determination(self):
-        game = Game("Mykolas", "Simonas", logger=lambda *args: None)
+        game = Game(name1="Mykolas", name2="Simonas", use_computer=False, logger=lambda *args: None)
         game.p1.wins = 3
         game.p2.wins = 1
         self.assertEqual(game.determine_winner(), "Mykolas")
@@ -163,8 +187,5 @@ if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "test":
         unittest.main(argv=sys.argv[:1])
     else:
-        name1 = input("Player 1 name: ")
-        use_computer = input("Play against computer? (y/n): ").lower() == 'y'
-        name2 = None if use_computer else input("Player 2 name: ")
-        game = Game(name1, name2, use_computer)
+        game = Game()
         game.play_game()
