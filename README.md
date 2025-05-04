@@ -92,13 +92,82 @@ class ComputerPlayer(Player):
         return self.value > other.value
 ```
 - **Kompozicija:** `Game` klasė turi `Deck` ir `Players`, o `Deck` klasė turi `Card` objektus.
+```py
+class Deck:
+    def __init__(self):
+        self.cards = [CardFactory.create_card(value, suit) for value in range(2, 15) for suit in range(4)]
+```
 - **Kortų kaladės kūrimas:** `Deck` klasė, naudodama "Factory" design patern, sukuria 52 kortų kaladę ir ją sumaišo.
+```py
+class CardFactory:
+    suits = ["spades", "hearts", "diamonds", "clubs"]
+    values = [None, None, "2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", "King", "Ace"]
+```
 - **Kortų palyginimai:** Klasė `Card` įgyvendina `__lt__` ir `__gt__`, kad palygintų kortelių vertes.
+```py
+    def __lt__(self, other):
+        return self.value < other.value
+
+    def __gt__(self, other):
+        return self.value > other.value
+
+    def __eq__(self, other):
+        return self.value == other.value
+```
 - **Žaidimo mechanika:** Klasė `Game` tvarko pagrindinę logiką, įskaitant raundo eigą, rezultatų stebėjimą ir nugalėtojo nustatymą.
 - **Karo logika:** Įdiegta realistiška karo mechanika – kiekvienam karo scenarijui traukiamos trys užverstos kortos ir viena užversta.
+```py
+ def war(self, table_cards):
+        if len(self.deck.cards) < 8:
+            self.logger("Not enough cards to continue war. Ending war.")
+            return
+
+        self.logger("Each player places three cards face down and one face up.")
+
+        for _ in range(3):
+            table_cards.append(self.deck.remove_card())  # p1 face-down
+            table_cards.append(self.deck.remove_card())  # p2 face-down
+
+        p1_war_card = self.deck.remove_card()
+        p2_war_card = self.deck.remove_card()
+        table_cards.extend([p1_war_card, p2_war_card])
+        self.draw(self.p1.name, p1_war_card, self.p2.name, p2_war_card)
+
+        if p1_war_card > p2_war_card:
+            self.p1.wins += 1
+            self.logger(f"{self.p1.name} wins the war and takes {len(table_cards)} cards.")
+        elif p2_war_card > p1_war_card:
+            self.p2.wins += 1
+            self.logger(f"{self.p2.name} wins the war and takes {len(table_cards)} cards.")
+        else:
+            self.logger("WAR again!")
+            self.war(table_cards)
+```
 – **Žaidėjo sąveika:** Palaiko žmonių tarpusavio arba žmonių ir kompiuterio žaidimus su dinamine įvestimi.
 – **Pastovumas:** Žaidimo rezultatai registruojami byloje, kad būtų galima juos saugoti.
 – **Unit test:** „unittest“ modulis apžvelgia pagrindinę logiką: kortų palyginimą, kaladės dydį ir nugalėtojo nustatymą.
+```py
+lass TestCard(unittest.TestCase):
+    def test_card_comparison(self):
+        c1 = Card(10, 2) 
+        c2 = Card(11, 1) 
+        self.assertTrue(c2 > c1)
+        self.assertFalse(c1 > c2)
+        self.assertTrue(c1 == Card(10, 0)) 
+
+    def test_deck_size(self):
+        deck = Deck()
+        self.assertEqual(len(deck.cards), 52)
+
+    def test_winner_determination(self):
+        game = Game(name1="Mykolas", name2="Simonas", use_computer=False, logger=lambda *args: None)
+        game.p1.wins = 3
+        game.p2.wins = 1
+        self.assertEqual(game.determine_winner(), "Mykolas")
+        game.p1.wins = 2
+        game.p2.wins = 2
+        self.assertEqual(game.determine_winner(), "It was a tie!")
+```
 
 
 
