@@ -36,7 +36,7 @@ Paleidus žaidimą, jūsų bus paprašyta įvesti vardus ir nurodyti, ar norite 
 ### a. Paaiškinkite, kaip programa apima (įgyvendina) funkcinius reikalavimus.
 - **4 OOP kolonos:**
 - Klasės `Card`, `Deck`, `Player` ir `Game` visos naudoja inkapsuliaciją(apibūdina duomenų ir metodų, kurie dirba su duomenimis, sujungimą viename vienete.).
-```
+```py
 class Card:
     suits = CardFactory.suits
     values = CardFactory.values
