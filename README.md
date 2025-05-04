@@ -148,7 +148,7 @@ class CardFactory:
 - **Unit test:** „unittest“ modulis apžvelgia pagrindinę logiką: kortų palyginimą, kaladės dydį ir nugalėtojo nustatymą.
 
 ```py
-lass TestCard(unittest.TestCase):
+class TestCard(unittest.TestCase):
     def test_card_comparison(self):
         c1 = Card(10, 2) 
         c2 = Card(11, 1) 
