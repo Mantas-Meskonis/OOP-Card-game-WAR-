@@ -125,8 +125,8 @@ class CardFactory:
         self.logger("Each player places three cards face down and one face up.")
 
         for _ in range(3):
-            table_cards.append(self.deck.remove_card())  # p1 face-down
-            table_cards.append(self.deck.remove_card())  # p2 face-down
+            table_cards.append(self.deck.remove_card()) 
+            table_cards.append(self.deck.remove_card()) 
 
         p1_war_card = self.deck.remove_card()
         p2_war_card = self.deck.remove_card()
