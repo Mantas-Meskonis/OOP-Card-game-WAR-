@@ -84,6 +84,13 @@ class ComputerPlayer(Player):
 
 ```
 - Polymorfizmas(programavimo koncepcija, leidžianti metodui atlikti skirtingas užduotis, priklausomai nuo objekto, su kuriuo jis dirba, net jei objektai yra skirtingų tipų.) naudojamas `Card` klasėje `__lt__` ir `__gt__` operatoriuose.
+```py
+def __lt__(self, other):
+        return (self.value, self.suit) < (other.value, other.suit)
+
+    def __gt__(self, other):
+        return (self.value, self.suit) > (other.value, other.suit)
+```
 - **Kompozicija:** `Game` klasė turi `Deck` ir `Players`, o `Deck` klasė turi `Card` objektus.
 - **Kortų kaladės kūrimas:** `Deck` klasė, naudodama "Factory" design patern, sukuria 52 kortų kaladę ir ją sumaišo.
 - **Kortų palyginimai:** Klasė `Card` įgyvendina `__lt__` ir `__gt__`, kad palygintų kortelių vertes.
