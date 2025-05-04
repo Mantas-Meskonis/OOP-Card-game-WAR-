@@ -192,6 +192,12 @@ class TestCard(unittest.TestCase):
 - Galima padaryti permaišymo mechaniką.
 
 
+## Šaltiniai
+- https://docs.python.org/3/library/unittest.html
+- https://refactoring.guru/design-patterns/python
+- https://www.freecodecamp.org/news/python-import-from-file-importing-local-files-in-python/
+- https://www.w3schools.com/python/default.asp
+- https://docs.github.com/en/get-started/start-your-journey/about-github-and-git
 
 
 
