@@ -46,13 +46,13 @@ class Card:
         self.suit = suit
 
     def __lt__(self, other):
-        return (self.value, self.suit) < (other.value, other.suit)
+        return self.value < other.value
 
     def __gt__(self, other):
-        return (self.value, self.suit) > (other.value, other.suit)
+        return self.value > other.value
 
     def __eq__(self, other):
-        return (self.value, self.suit) == (other.value, other.suit)
+        return self.value == other.value
 
     def __repr__(self):
         return f"{self.values[self.value]} of {self.suits[self.suit]}"
@@ -85,11 +85,11 @@ class ComputerPlayer(Player):
 ```
 - Polymorfizmas(programavimo koncepcija, leidžianti metodui atlikti skirtingas užduotis, priklausomai nuo objekto, su kuriuo jis dirba, net jei objektai yra skirtingų tipų.) naudojamas `Card` klasėje `__lt__` ir `__gt__` operatoriuose.
 ```py
-def __lt__(self, other):
-        return (self.value, self.suit) < (other.value, other.suit)
+ def __lt__(self, other):
+        return self.value < other.value
 
     def __gt__(self, other):
-        return (self.value, self.suit) > (other.value, other.suit)
+        return self.value > other.value
 ```
 - **Kompozicija:** `Game` klasė turi `Deck` ir `Players`, o `Deck` klasė turi `Card` objektus.
 - **Kortų kaladės kūrimas:** `Deck` klasė, naudodama "Factory" design patern, sukuria 52 kortų kaladę ir ją sumaišo.
