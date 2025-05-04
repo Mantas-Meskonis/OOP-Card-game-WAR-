@@ -179,9 +179,7 @@ class TestCard(unittest.TestCase):
 
 ### Iššūkių buvo, veinas iš jų tai žaidimo galimybę spresti kraštutinius atvejus kaip kortų pritrūkimas karo metu, vienodų kortų ištraukimo karo mechanikos padarymas.
 
-### Pagrindinė dilema kurią turejau atlikdamas šią programą, tai kortų permaišymo mechanika. "Karas" gali būti žaidžiamas ir ne pagal taškus kaip aš padariau, tačiau pagal visas kaladės kortas. Tai reiškia, kad pasibaigus kaladėje kortoms, jau atverstos kortos būtų 
-permaišytos ir karas žaidžiamas toliau, iki kol vienas iš žaidėjų susirinks visą kaladę. Šis žaidimo metodas užtranka tikrai ilgą laiko tarpą, ir paprasta programos demonstracija bei testavimas tikrai užtruktų ilgai ir pasidarytu greitai nuobodu. Iš pradžių nebuvau 
-tvirtas apie pasirinkimą daryti ši žaidima tokiu metodu, tačiau pasiklausęs pažystamų, interneto ir šiaip toliau pasigilinęs į "Karo" istoriją, sužinojau, kad tokį "Karo" variantą irgi žaisdavo.
+### Pagrindinė dilema kurią turejau atlikdamas šią programą, tai kortų permaišymo mechanika. "Karas" gali būti žaidžiamas ir ne pagal taškus kaip aš padariau, tačiau pagal visas kaladės kortas. Tai reiškia, kad pasibaigus kaladėje kortoms, jau atverstos kortos būtų permaišytos ir karas žaidžiamas toliau, iki kol vienas iš žaidėjų susirinks visą kaladę. Šis žaidimo metodas užtranka tikrai ilgą laiko tarpą, ir paprasta programos demonstracija bei testavimas tikrai užtruktų ilgai ir pasidarytu greitai nuobodu. Iš pradžių nebuvau tvirtas apie pasirinkimą daryti ši žaidima tokiu metodu, tačiau pasiklausęs pažystamų, interneto ir šiaip toliau pasigilinęs į "Karo" istoriją, sužinojau, kad tokį "Karo" variantą irgi žaisdavo.
 
 
 
