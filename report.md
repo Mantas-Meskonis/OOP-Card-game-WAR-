@@ -115,7 +115,7 @@ class CardFactory:
         return self.value == other.value
 ```
 - **Žaidimo mechanika:** Klasė `Game` tvarko pagrindinę logiką, įskaitant raundo eigą, rezultatų stebėjimą ir nugalėtojo nustatymą.
-- **Karo logika:** Įdiegta realistiška karo mechanika – kiekvienam karo scenarijui traukiamos trys užverstos kortos ir viena užversta.
+- **Karo logika:** Įdiegta realistiška karo mechanika – kiekvienam karo scenarijui traukiamos trys užverstos kortos ir viena atversta.
 ```py
  def war(self, table_cards):
         if len(self.deck.cards) < 8:
