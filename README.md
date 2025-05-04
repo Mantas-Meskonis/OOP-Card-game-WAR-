@@ -36,6 +36,27 @@ Paleidus žaidimą, jūsų bus paprašyta įvesti vardus ir nurodyti, ar norite 
 ### a. Paaiškinkite, kaip programa apima (įgyvendina) funkcinius reikalavimus.
 - **4 OOP kolonos:**
 - Klasės `Card`, `Deck`, `Player` ir `Game` visos naudoja inkapsuliaciją(apibūdina duomenų ir metodų, kurie dirba su duomenimis, sujungimą viename vienete.).
+```
+class Card:
+    suits = CardFactory.suits
+    values = CardFactory.values
+
+    def __init__(self, value, suit):
+        self.value = value
+        self.suit = suit
+
+    def __lt__(self, other):
+        return (self.value, self.suit) < (other.value, other.suit)
+
+    def __gt__(self, other):
+        return (self.value, self.suit) > (other.value, other.suit)
+
+    def __eq__(self, other):
+        return (self.value, self.suit) == (other.value, other.suit)
+
+    def __repr__(self):
+        return f"{self.values[self.value]} of {self.suits[self.suit]}"
+ ```
 - Abstrakcija(principas, kurio esmė – paslėpti klasės ar funkcijos vidines įgyvendinimo detales, o vartotojui parodyti tik esmines funkcijas.) yra `CardFactory` klasėje.
 - Paveldėjimas( leidžia kurti naujas klases (poklasius), kurios paveldi savybes ir elgseną iš esamų klasių (superklasių). Tai skatina pakartotinį kodo naudojimą ir padeda užmegzti ryšius tarp klasių.) yra naudojamas Klasėje `Player`, jis turi subklasę `ComputerPlayer`,
 - Polymorfizmas(programavimo koncepcija, leidžianti metodui atlikti skirtingas užduotis, priklausomai nuo objekto, su kuriuo jis dirba, net jei objektai yra skirtingų tipų.) naudojamas `Card` klasėje `__lt__` ir `__gt__` operatoriuose.
