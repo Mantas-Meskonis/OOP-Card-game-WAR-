@@ -169,7 +169,9 @@ class TestCard(unittest.TestCase):
         game.p2.wins = 2
         self.assertEqual(game.determine_winner(), "It was a tie!")
 ```
+## Rezultatai ir santrauka
 
+###
 
 
 
