@@ -67,7 +67,22 @@ class CardFactory:
     def create_card(cls, value, suit):
         return Card(value, suit)
  ```
-- Paveldėjimas( leidžia kurti naujas klases (poklasius), kurios paveldi savybes ir elgseną iš esamų klasių (superklasių). Tai skatina pakartotinį kodo naudojimą ir padeda užmegzti ryšius tarp klasių.) yra naudojamas Klasėje `Player`, jis turi subklasę `ComputerPlayer`,
+- Paveldėjimas( leidžia kurti naujas klases (poklasius), kurios paveldi savybes ir elgseną iš esamų klasių (superklasių). Tai skatina pakartotinį kodo naudojimą ir padeda užmegzti ryšius tarp klasių.) yra naudojamas Klasėje `Player`, jis turi subklasę `ComputerPlayer`.
+```py
+class Player:
+    def __init__(self, name):
+        self.wins = 0
+        self.card = None
+        self.name = name
+
+    def __str__(self):
+        return self.name
+
+class ComputerPlayer(Player):
+    def __init__(self):
+        super().__init__("Computer")
+
+```
 - Polymorfizmas(programavimo koncepcija, leidžianti metodui atlikti skirtingas užduotis, priklausomai nuo objekto, su kuriuo jis dirba, net jei objektai yra skirtingų tipų.) naudojamas `Card` klasėje `__lt__` ir `__gt__` operatoriuose.
 - **Kompozicija:** `Game` klasė turi `Deck` ir `Players`, o `Deck` klasė turi `Card` objektus.
 - **Kortų kaladės kūrimas:** `Deck` klasė, naudodama "Factory" design patern, sukuria 52 kortų kaladę ir ją sumaišo.
